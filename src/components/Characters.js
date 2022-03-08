@@ -4,6 +4,12 @@ export default function Characters(props) {
   const { characters, setCharacters } = props;
   //console.log(characters);
 
+  const reqApiEpisodes = async () =>{
+      const api = await fetch("https://rickandmortyapi.com/api/episode");
+      const episodes = await api.json();
+      console.log(episodes);
+  };
+
   const resetCharacters = ()=>{
       setCharacters(null);
   };
@@ -32,8 +38,12 @@ export default function Characters(props) {
                 )}
               </h6>
               <p>
-                <span className="text-grey">Episodios: </span>
+                <span className="text-grey btn" onClick={reqApiEpisodes}>Episodios: </span>
                 <span>{character.episode.length}</span>
+              </p>
+              <p>
+                <span className="text-grey">Location: </span>
+                <span>{character.location.name}</span>
               </p>
             </div>
           </div>
